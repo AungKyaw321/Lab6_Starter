@@ -16,7 +16,7 @@ class RecipeCard extends HTMLElement {
     var shadow = this.attachShadow({mode:'open'});
     var articleElement = document.createElement('article');
     var styleElement = document.createElement('style');
-    styleElement.innerHTML = document.getElementsByTagName('style');
+    styleElement.textContent = document.getElementsByTagName('style');
 
     shadow.append(this.articleElement);
     shadow.append(styleElement);
@@ -52,6 +52,7 @@ class RecipeCard extends HTMLElement {
     //           cardTemplate.html and the data passed in (You should only have one <article>,
     //           do not nest an <article> inside another <article>). You should use Template
     //           literals (tempalte strings) and element.innerHTML for this.
+    //https://developer.mozilla.org/en-US/docs/Web/API/Element/shadowRoot
     articleElement = this.articleElement;
     let image = articleElement.querySelector('img');
     image.src = data.imgSrc;
@@ -64,7 +65,7 @@ class RecipeCard extends HTMLElement {
     let org = articleElement.querySelector('.organization');
     org.value = organization;
 
-
+//look up template literals
 
 
   }

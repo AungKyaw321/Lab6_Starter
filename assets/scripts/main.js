@@ -27,8 +27,10 @@ function getRecipesFromStorage() {
   //           header. It is possible in only a single line, but should
   //           be no more than a few lines.
   
-  const recipesArr = localStorage.getItem('recipes');
-  return recipesArr;
+  const recipeArr = localStorage.getItem('recipes');
+  //parse json
+  const obj = JSON.parse(recipeArr)
+  return obj;
 }
 
 /**
@@ -50,14 +52,14 @@ function addRecipesToDocument(recipes) {
     return
   }
   var item = document.createElement('recipe-card');
-  item.data = recipes[0];
-  main.appendChild(item);
-  // recipes.forEach(myFunction);
-  // function myFunction(d){
-  //   var item = document.createElement('recipe-card');
-  //   item.data = d;
-  //   main.appendChild(item);
-  // };
+  //item.data = recipes[0];
+  //main.appendChild(item);
+   recipes.forEach(myFunction);
+   function myFunction(d){
+     var item = document.createElement('recipe-card');
+     item.data = d;
+     main.append(item);
+   };
 }
 
 /**
