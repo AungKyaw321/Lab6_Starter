@@ -3,6 +3,7 @@
 class RecipeCard extends HTMLElement {
   // Called once when document.createElement('recipe-card') is called, or
   // the element is written into the DOM directly as <recipe-card>
+  
   constructor() {
     super(); // Inheret everything from HTMLElement
 
@@ -12,6 +13,13 @@ class RecipeCard extends HTMLElement {
     // A3. TODO - Create a style element - This will hold all of the styles for the Web Component
     // A4. TODO - Insert all of the styles from cardTemplate.html into the <style> element you just made
     // A5. TODO - Append the <style> and <article> elements to the Shadow DOM
+    var shadow = this.attachShadow({mode:'open'});
+    var articleElement = document.createElement('article');
+    var styleElement = document.createElement('style');
+    styleElement.innerHTML = document.getElementsByTagName('style');
+
+    shadow.append(this.articleElement);
+    shadow.append(styleElement);
   }
 
   /**
@@ -44,8 +52,24 @@ class RecipeCard extends HTMLElement {
     //           cardTemplate.html and the data passed in (You should only have one <article>,
     //           do not nest an <article> inside another <article>). You should use Template
     //           literals (tempalte strings) and element.innerHTML for this.
+    articleElement = this.articleElement;
+    let image = articleElement.querySelector('img');
+    image.src = data.imgSrc;
+    image.alt = imgAlt;
+
+    let title = articleElement.querySelector('a');
+    title.href = titleLnk;
+    title.value = titleTxt;
+
+    let org = articleElement.querySelector('.organization');
+    org.value = organization;
+
+
+
+
   }
 }
 
 // A8. TODO - Define the Class as a customElement so that you can create
 //           'recipe-card' elements
+customElements.define('recipe-card', RecipeCard);

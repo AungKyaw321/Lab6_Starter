@@ -4,10 +4,12 @@
 window.addEventListener('DOMContentLoaded', init);
 
 // Starts the program, all function calls trace back here
-function init() {
+async function init() {
   // Get the recipes from localStorage
+  await new Promise(resolve => setTimeout(resolve, 5000));
   let recipes = getRecipesFromStorage();
   // Add each recipe to the <main> element
+  console.log(recipes);
   addRecipesToDocument(recipes);
   // Add the event listeners to the form elements
   initFormHandler();
@@ -24,6 +26,9 @@ function getRecipesFromStorage() {
   // A9. TODO - Complete the functionality as described in this function
   //           header. It is possible in only a single line, but should
   //           be no more than a few lines.
+  
+  const recipesArr = localStorage.getItem('recipes');
+  return recipesArr;
 }
 
 /**
@@ -39,6 +44,20 @@ function addRecipesToDocument(recipes) {
   //            create a <recipe-card> element for each one, and populate
   //            each <recipe-card> with that recipe data using element.data = ...
   //            Append each element to <main>
+  let main = document.querySelector('main');
+
+  if (recipes == null) {
+    return
+  }
+  var item = document.createElement('recipe-card');
+  item.data = recipes[0];
+  main.appendChild(item);
+  // recipes.forEach(myFunction);
+  // function myFunction(d){
+  //   var item = document.createElement('recipe-card');
+  //   item.data = d;
+  //   main.appendChild(item);
+  // };
 }
 
 /**
