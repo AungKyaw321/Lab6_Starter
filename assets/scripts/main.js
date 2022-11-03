@@ -51,13 +51,14 @@ function addRecipesToDocument(recipes) {
   if (recipes == null) {
     return
   }
-  var item = document.createElement('recipe-card');
+  //var item = document.createElement('recipe-card');
   //item.data = recipes[0];
   //main.appendChild(item);
    recipes.forEach(myFunction);
    function myFunction(d){
      var item = document.createElement('recipe-card');
      item.data = d;
+     console.log(item.data);
      main.append(item);
    };
 }
