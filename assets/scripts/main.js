@@ -6,7 +6,7 @@ window.addEventListener('DOMContentLoaded', init);
 // Starts the program, all function calls trace back here
 async function init() {
   // Get the recipes from localStorage
-  await new Promise(resolve => setTimeout(resolve, 5000));
+  // await new Promise(resolve => setTimeout(resolve, 5000));
   let recipes = getRecipesFromStorage();
   // Add each recipe to the <main> element
   console.log(recipes);
@@ -73,10 +73,11 @@ function saveRecipesToStorage(recipes) {
   // B1. TODO - Complete the functionality as described in this function
   //            header. It is possible in only a single line, but should
   //            be no more than a few lines.
+  localStorage.setItem('recipes', JSON.stringify(recipes));
 }
 
 /**
- * Adds the necesarry event handlers to <form> and the clear storage
+ * Adds the necessary event handlers to <form> and the clear storage
  * <button>.
  */
 function initFormHandler() {
@@ -103,5 +104,27 @@ function initFormHandler() {
   // Steps B12 & B13 will occur inside the event listener from step B11
   // B12. TODO - Clear the local storage
   // B13. TODO - Delete the contents of <main>
+  const form = document.getElementById('new-recipe');
+  form.addEventListener('submit', formSubmit);
 
+  // clear everything
+  const clearButton = document.getElementsByClassName('danger');
+  clearButton.onclick = () => {
+    // this is not getting called at all I think
+    console.log(clearButton);
+    localStorage.clear();
+    const main = document.querySelector('main');
+    main.innerHTML = '';
+  };
+}
+
+function formSubmit(submission) {
+  submission.preventDefault();
+  const recipeData = Object.fromEntries(new FormData(submission.target).entries());
+  addRecipesToDocument([recipeData])
+
+  const recipeArr = localStorage.getItem('recipes');
+  let obj = JSON.parse(recipeArr)
+  obj.push(recipeData)
+  saveRecipesToStorage(obj)
 }
