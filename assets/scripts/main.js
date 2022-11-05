@@ -108,10 +108,9 @@ function initFormHandler() {
   form.addEventListener('submit', formSubmit);
 
   // clear everything
-  const clearButton = document.getElementsByClassName('danger');
+  const clearButton = document.getElementsByClassName('danger')[0];
+
   clearButton.onclick = () => {
-    // this is not getting called at all I think
-    console.log(clearButton);
     localStorage.clear();
     const main = document.querySelector('main');
     main.innerHTML = '';

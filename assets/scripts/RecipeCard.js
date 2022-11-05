@@ -91,7 +91,7 @@ class RecipeCard extends HTMLElement {
       color: #70757A;
       font-size: 12px;
     }`;
-    console.log(document.getElementsByTagName('style'));
+    // console.log(document.getElementsByTagName('style'));
     shadow.append(articleElement);
     shadow.append(styleElement);
   }
@@ -137,7 +137,7 @@ class RecipeCard extends HTMLElement {
   <p class="organization">${data.organization}</p>
   <div class="rating">
     <span>5</span>
-    <img src="/assets/images/icons/${data.rating}-star.svg" alt="${data.rating} stars">
+    <img src="/Lab6_Starter/assets/images/icons/${data.rating}-star.svg" alt="${data.rating} stars">
     <span>(${data.numRatings})</span>
   </div>
   <time>${data.lengthTime}</time>
